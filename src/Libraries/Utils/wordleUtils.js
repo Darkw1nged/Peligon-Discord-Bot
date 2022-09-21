@@ -47,7 +47,7 @@ module.exports.incrementTries = async function (guild, user, channel) {
 
 module.exports.getGuessed = function (guild, user) {
     return new Promise((resolve) => {
-        index.databaseConnection.query(`SELECT words_guessed FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
+        index.databaseConnection.query(`SELECT words_guessed FROM wordle_profile WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
             resolve(result[0]?.words_guessed);
         });
@@ -56,7 +56,7 @@ module.exports.getGuessed = function (guild, user) {
 
 module.exports.getLosses = function (guild, user) {
     return new Promise((resolve) => {
-        index.databaseConnection.query(`SELECT words_failed FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
+        index.databaseConnection.query(`SELECT words_failed FROM wordle_profile WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
             resolve(result[0]?.words_failed);
         });
@@ -65,7 +65,7 @@ module.exports.getLosses = function (guild, user) {
 
 module.exports.getWinStreak = function (guild, user) {
     return new Promise((resolve) => {
-        index.databaseConnection.query(`SELECT wordle_current_streak FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
+        index.databaseConnection.query(`SELECT wordle_current_streak FROM wordle_profile WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
             resolve(result[0]?.wordle_current_streak);
         });
@@ -74,7 +74,7 @@ module.exports.getWinStreak = function (guild, user) {
 
 module.exports.getBestWinStreak = function (guild, user) {
     return new Promise((resolve) => {
-        index.databaseConnection.query(`SELECT wordle_best_streak FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
+        index.databaseConnection.query(`SELECT wordle_best_streak FROM wordle_profile WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
             resolve(result[0]?.wordle_best_streak);
         });
@@ -83,15 +83,15 @@ module.exports.getBestWinStreak = function (guild, user) {
 
 module.exports.endGane = async function (guild, user, failed) {
     if (failed) {
-        index.databaseConnection.query(`UPDATE users SET wordle_current_streak=0 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
-        index.databaseConnection.query(`UPDATE users SET words_failed=${await this.getLosses(guild, user)} + 1 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
+        index.databaseConnection.query(`UPDATE wordle_profile SET wordle_current_streak=0 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
+        index.databaseConnection.query(`UPDATE wordle_profile SET words_failed=${await this.getLosses(guild, user)} + 1 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
     } else {
-        index.databaseConnection.query(`UPDATE users SET wordle_current_streak=${await this.getWinStreak(guild, user)} + 1 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
-        index.databaseConnection.query(`UPDATE users SET words_guessed=${await this.getGuessed(guild, user)} + 1 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
+        index.databaseConnection.query(`UPDATE wordle_profile SET wordle_current_streak=${await this.getWinStreak(guild, user)} + 1 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
+        index.databaseConnection.query(`UPDATE wordle_profile SET words_guessed=${await this.getGuessed(guild, user)} + 1 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
     }
 
     if (await this.getWinStreak(guild, user) > await this.getBestWinStreak(guild, user)) {
-        index.databaseConnection.query(`UPDATE users SET wordle_best_streak=${await this.getWinStreak(guild, user)} WHERE guild_id=${guild.id} AND user_id=${user.id}`);
+        index.databaseConnection.query(`UPDATE wordle_profile SET wordle_best_streak=${await this.getWinStreak(guild, user)} WHERE guild_id=${guild.id} AND user_id=${user.id}`);
     }
     await leaderboardUtils.updateWordleCurrentStreak(guild, user, await this.getBestWinStreak(guild, user));
     index.databaseConnection.query(`DELETE FROM wordle WHERE guild_id=${guild.id} AND user_id=${user.id}`);

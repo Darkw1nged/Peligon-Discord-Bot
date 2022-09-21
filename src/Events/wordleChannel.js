@@ -24,10 +24,11 @@ module.exports = async (client) => {
                 return;
             }
 
+            await wordleUtils.incrementTries(message.guild, message.author, message.channel);
+            const userTries = await wordleUtils.getTries(message.guild, message.author, message.channel);
+
             const word = await wordleUtils.getWord(message.guild, message.author, message.channel);
-            if (message.content !== word) {
-                await wordleUtils.incrementTries(message.guild, message.author, message.channel);
-            } else {
+            if (message.content === word) {
                 hasFinished.add(message.author.id);
                 await wordleUtils.endGane(message.guild, message.author, false);
                 setTimeout(() => {
@@ -51,11 +52,12 @@ module.exports = async (client) => {
             const gameStarted = new MessageEmbed()
                 .setColor('#A3DE34')
                 .setTitle("Wordle - Current status")
-                .setDescription(pattern);
+                .setDescription(pattern)
+                .setFooter(`Tries ${userTries}/6`);
 
             message.channel.send({ embeds: [gameStarted] })
 
-            if (await wordleUtils.getTries(message.guild, message.author, message.channel) >= 6) {
+            if (userTries >= 6) {
                 hasFinished.add(message.author.id);
                 await wordleUtils.endGane(message.guild, message.author, true);
                 setTimeout(() => {
@@ -105,6 +107,7 @@ module.exports = async (client) => {
                             inline: true                        
                         }
                     )
+                    .setFooter(`Tries ${userTries}/6`)
 
                 message.channel.send({ embeds: [gameEnding] })
             }

@@ -84,7 +84,7 @@ module.exports.getWordleCurrentStreak = function (guild, user) {
 }
 
 module.exports.updateWordleCurrentStreak = function (guild, user, bestStreak) {
-    index.databaseConnection.query(`SELECT wordle_best_streak FROM users WHERE guild_id=${guild.id} AND user_id=${user.id} ORDER BY wordle_best_streak DESC`, (err, result) => {
+    index.databaseConnection.query(`SELECT wordle_best_streak FROM wordle_profile WHERE guild_id=${guild.id} AND user_id=${user.id} ORDER BY wordle_best_streak DESC`, (err, result) => {
         if (err) throw err;
         let pos = 1;
         for (let i = 0; i < result.length; i++) {

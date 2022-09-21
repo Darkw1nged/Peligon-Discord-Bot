@@ -21,6 +21,9 @@ module.exports = async (client) => {
 
                 index.databaseConnection.query(`INSERT INTO leaderboard (guild_id, user_id, experience, coins, bank, wordle, wordle_best)
                 VALUES ('${message.guild.id}', '${message.author.id}', 1, 1, 1, 1, 1)`);
+
+                index.databaseConnection.query(`INSERT INTO wordle_profile (guild_id, user_id, words_guessed, words_failed, wordle_current_streak, wordle_best_streak)
+                VALUES ('${message.guild.id}', '${message.author.id}', 0, 0, 0, 0)`);
                 console.log(`Could not find user > ${message.author.username} inside of database; Inserting them now!`)
             }
         })
