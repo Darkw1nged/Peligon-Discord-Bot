@@ -1,0 +1,37 @@
+{
+  "author": {
+    "name": "breftejk"
+  },
+  "bugs": {
+    "url": "https://github.com/breftejk/DBD-capriham-theme/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "discord-dashboard theme: The best way to create a Web Dashboard for your Discord Bot! No need to edit files or write the server from scratch!",
+  "devDependencies": {},
+  "directories": {
+    "test": "test"
+  },
+  "homepage": "https://assistants.ga/dbd-docs/#/?id=capriham",
+  "keywords": [
+    "discord",
+    "discord.js",
+    "discordjs",
+    "discord dashboard",
+    "discord web dashboard",
+    "web dashboard",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "dbd-capriham-theme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breftejk/DBD-capriham-theme.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.2.6"
+}
