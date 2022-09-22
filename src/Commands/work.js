@@ -53,7 +53,7 @@ module.exports = class work {
         const logEmbed = new MessageEmbed()
             .setColor('0x66BB6A')
             .setAuthor('Account Updated', "https://images.emojiterra.com/twitter/v13.0/512px/1f4c1.png")
-            .setDescription(`**User:** ${message.author}\n**Amount:** Money: \`+${coinsEarned}\` |  bank: \`+0\`\n**Reason:** Working`)
+            .setDescription(`**User:** ${message.author}\n**Amount:** Money: \`+${earned}\` |  bank: \`+0\`\n**Reason:** Working`)
             .setTimestamp()
         logChannel.send({embeds: [logEmbed]})
     }

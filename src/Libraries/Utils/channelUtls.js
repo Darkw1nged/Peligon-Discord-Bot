@@ -18,6 +18,10 @@ module.exports.getLogsChannel = function getLogsChannel(guild) {
     });
 }
 
+module.exports.setLogsChannel = function (guild, channel) {
+    index.databaseConnection.query(`UPDATE channels SET log='${channel.id}' WHERE guild_id=${guild.id}`);
+}
+
 module.exports.getWordleCategory = function getWordleCategory(guild) {
     return new Promise((resolve, reject) => {
         index.databaseConnection.query(`SELECT category_wordle FROM channels WHERE guild_id = ${guild.id}`, (err, result) => {

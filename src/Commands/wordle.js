@@ -43,7 +43,9 @@ module.exports = class Wordle {
                 allow: ['VIEW_CHANNEL']
             }
         ]}).then(async (channel) => {
-            await wordleUtils.startGame(message.guild, message.author, channel, randomWords());
+            const word = randomWords();
+            await wordleUtils.startGame(message.guild, message.author, channel, word);
+            console.log(`Wordle Word -> Game ${message.author.username}'s word is ${word}`)
 
             const gameInformation = new MessageEmbed()
                 .setColor('#FFA500')
@@ -83,7 +85,10 @@ module.exports = class Wordle {
                 )
                             
             channel.send({ embeds: [gameInformation] })
-            
+
+            channel.send(`<@${message.author.id}>`).then((ping) => {
+                ping.delete();    
+            })
         })
     }
 }
