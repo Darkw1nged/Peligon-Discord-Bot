@@ -38,6 +38,9 @@ client.on('ready', async () => {
     welcomeChannel(client);
 
     console.log(`Peligon Core has been enabled.`);
+
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(`Startup uses approximately ${Math.round(used * 100) / 100} MB`);
 });
 
 // registering all commands.
