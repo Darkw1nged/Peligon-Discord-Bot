@@ -1,5 +1,5 @@
 const {MessageEmbed} = require('discord.js');
-const channelUtils = require('../Libraries/Utils/channelUtls');
+const UStatistics = require('../Libraries/Utils/UStatistics');
 
 module.exports = class Statistics {
     constructor() {
@@ -33,34 +33,34 @@ module.exports = class Statistics {
             }
 
             if (channel.name.startsWith("Server Total: ")) {
-                await channelUtils.setServerTotalChannel(message.guild, null);
+                await UStatistics.setServerTotalChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Humans: ")) {
-                await channelUtils.setHumansChannel(message.guild, null);
+                await UStatistics.setHumansChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Bots: ")) {
-                await channelUtils.setBotsChannel(message.guild, null);
+                await UStatistics.setBotsChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Online: ")) {
-                await channelUtils.setOnlineChannel(message.guild, null);
+                await UStatistics.setOnlineChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Boosters: ")) {
-                await channelUtils.setBoostersChannel(message.guild, null);
+                await UStatistics.setBoostersChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Roles: ")) {
-                await channelUtils.setRolesChannel(message.guild, null);
+                await UStatistics.setRolesChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Channels: ")) {
-                await channelUtils.setTotalChannelsChannel(message.guild, null);
+                await UStatistics.setTotalChannelsChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Voice Channels: ")) {
-                await channelUtils.setTotalVoiceChannelsChannel(message.guild, null);
+                await UStatistics.setTotalVoiceChannelsChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Text Channels: ")) {
-                await channelUtils.setTotalTextChannelsChannel(message.guild, null);
+                await UStatistics.setTotalTextChannelsChannel(message.guild, null);
                 channel.delete();
             } else if (channel.name.startsWith("Categories: ")) {
-                await channelUtils.setCategoryChannel(message.guild, null);
+                await UStatistics.setCategoryChannel(message.guild, null);
                 channel.delete();
             } else {
                 const errorEmbed = new MessageEmbed()
@@ -95,7 +95,7 @@ module.exports = class Statistics {
                         }
                     ]
                 }).then(async (category) => {
-                    await channelUtils.setStatisticsCatagory(message.guild, category.id);
+                    await UStatistics.setStatisticsCatagory(message.guild, category.id);
                 })
             }
 
@@ -112,7 +112,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setServerTotalChannel(message.guild, channel.id);
+                        await UStatistics.setServerTotalChannel(message.guild, channel.id);
                     });                  
                     break;
                 case "humans":
@@ -124,7 +124,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setHumansChannel(message.guild, channel.id);
+                        await UStatistics.setHumansChannel(message.guild, channel.id);
                     }); 
                     break;
                 case "bots":
@@ -136,7 +136,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setBotsChannel(message.guild, channel.id);
+                        await UStatistics.setBotsChannel(message.guild, channel.id);
                     }); 
                     break;
                 case "online":
@@ -148,7 +148,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setOnlineChannel(message.guild, channel.id);
+                        await UStatistics.setOnlineChannel(message.guild, channel.id);
                     }); 
                     break;
                 case "boosters":
@@ -160,7 +160,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setBoostersChannel(message.guild, channel.id);
+                        await UStatistics.setBoostersChannel(message.guild, channel.id);
                     }); 
                     break;
                 case "roles":
@@ -172,7 +172,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setRolesChannel(message.guild, channel.id);
+                        await UStatistics.setRolesChannel(message.guild, channel.id);
                     }); 
                     break;
                 case "channels":
@@ -184,7 +184,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setTotalChannelsChannel(message.guild, channel.id);
+                        await UStatistics.setTotalChannelsChannel(message.guild, channel.id);
                     }); 
                     break;
                 case "voice_channels":
@@ -196,7 +196,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setTotalVoiceChannelsChannel(message.guild, channel.id);
+                        await UStatistics.setTotalVoiceChannelsChannel(message.guild, channel.id);
                     }); 
                     break;
                 case "text_channels":
@@ -209,7 +209,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setTotalTextChannelsChannel(message.guild, channel.id);
+                        await UStatistics.setTotalTextChannelsChannel(message.guild, channel.id);
                     }); 
                     break;
                 case "Categories":
@@ -221,7 +221,7 @@ module.exports = class Statistics {
                             }
                         ]
                     }).then(async (channel) => {
-                        await channelUtils.setCategoryChannel(message.guild, channel.id);
+                        await UStatistics.setCategoryChannel(message.guild, channel.id);
                     }); 
                     break;
             }

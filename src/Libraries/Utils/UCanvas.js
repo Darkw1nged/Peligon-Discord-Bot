@@ -12,7 +12,7 @@ module.exports.roundEdges = function (ctx, x, y, width, height, radius) {
     ctx.closePath();
 };
 
-module.exports.roundBottomEdges = function(ctx, x, y, width, height, radius) {
+module.exports.roundBottomEdges = function (ctx, x, y, width, height, radius) {
     ctx.beginPath();
     ctx.moveTo(x + radius, y);
     ctx.lineTo(x + width, y + height - radius);

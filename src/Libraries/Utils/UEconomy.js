@@ -1,6 +1,6 @@
 const index = require('../../index');
 
-module.exports.getCoins = function getCoins(guild, user) {
+module.exports.getCoins = function (guild, user) {
     return new Promise((resolve) => {
         index.databaseConnection.query(`SELECT * FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
@@ -9,19 +9,19 @@ module.exports.getCoins = function getCoins(guild, user) {
     });
 }
 
-module.exports.addCoins = async function addCoins(guild, user, coins) {
+module.exports.addCoins = async function (guild, user, coins) {
     index.databaseConnection.query(`UPDATE users SET coins = ${await this.getCoins(guild, user) + coins} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
         if (err) throw err;
     });
 }
 
-module.exports.removeCoins = async function removeCoins(guild, user, coins) {
+module.exports.removeCoins = async function (guild, user, coins) {
     index.databaseConnection.query(`UPDATE users SET coins = ${await this.getCoins(guild, user) - coins} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
         if (err) throw err;
     });
 }
 
-module.exports.getBankBalance = function getBankBalance(guild, user) {
+module.exports.getBankBalance = function (guild, user) {
     return new Promise((resolve, reject) => {
         index.databaseConnection.query(`SELECT bank FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
@@ -30,7 +30,7 @@ module.exports.getBankBalance = function getBankBalance(guild, user) {
     });
 }
 
-module.exports.getCoinsRank = function getCoinsRank(guild, user) {
+module.exports.getCoinsRank = function (guild, user) {
     return new Promise((resolve, reject) => {
         index.databaseConnection.query(`SELECT coins_leaderboard_position FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
@@ -39,7 +39,7 @@ module.exports.getCoinsRank = function getCoinsRank(guild, user) {
     });
 }
 
-module.exports.getBankRank = function getBankRank(guild, user) {
+module.exports.getBankRank = function (guild, user) {
     return new Promise((resolve, reject) => {
         index.databaseConnection.query(`SELECT bank_leaderboard_position FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
@@ -48,7 +48,7 @@ module.exports.getBankRank = function getBankRank(guild, user) {
     });
 }
 
-module.exports.getCoinBooster = async function getCoinBooster(guild, user) {
+module.exports.getCoinBooster = async function (guild, user) {
     return new Promise((resolve, reject) => {
         index.databaseConnection.query(`SELECT coin_boosters FROM users WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
             if (err) throw err;
@@ -57,13 +57,13 @@ module.exports.getCoinBooster = async function getCoinBooster(guild, user) {
     });
 }
 
-module.exports.addCoinBooster = async function addCoinBooster(guild, user, amount) {
+module.exports.addCoinBooster = async function (guild, user, amount) {
     index.databaseConnection.query(`UPDATE users SET coin_boosters = ${await this.getCoinBooster(guild, user) + amount} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
         if (err) throw err;
     });
 }
 
-module.exports.removeCoinBooster = async function removeCoinBooster(guild, user, amount) {
+module.exports.removeCoinBooster = async function (guild, user, amount) {
     index.databaseConnection.query(`UPDATE users SET coin_boosters = ${await this.getCoinBooster(guild, user) - amount} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
         if (err) throw err;
     });

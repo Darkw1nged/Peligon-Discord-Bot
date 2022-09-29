@@ -45,7 +45,7 @@ client.on('ready', async () => {
 // default prefix: '-'
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
-    const databaseUtils = require('./Libraries/Utils/databaseUtils');
+    const databaseUtils = require('./Libraries/Utils/UDatabase');
 
     const args = message.content.split(" ");
     const command = args[0];

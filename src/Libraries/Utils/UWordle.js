@@ -1,7 +1,7 @@
 const index = require('../../index');
-const leaderboardUtils = require('../Utils/leaderboardUtils');
-const experienceUtils = require('../Utils/ExperienceUtils');
-const economyUtils = require('../Utils/EconomyUtils');
+const leaderboardUtils = require('./leaderboardUtils');
+const experienceUtils = require('./ExperienceUtils');
+const economyUtils = require('./EconomyUtils');
 
 module.exports.inGame = function (guild, user) {
     return new Promise((resolve) => {
@@ -97,4 +97,7 @@ module.exports.endGane = async function (guild, user, failed) {
     }
     await leaderboardUtils.updateWordleCurrentStreak(guild, user, await this.getBestWinStreak(guild, user));
     index.databaseConnection.query(`DELETE FROM wordle WHERE guild_id=${guild.id} AND user_id=${user.id}`);
+    
+    await experienceUtils.addExperience(guild, user, Math.floor(Math.random() * 100) + 15);
+    await economyUtils.addCoins(guild, user, Math.floor(Math.random() * 30) + 15);
 }
