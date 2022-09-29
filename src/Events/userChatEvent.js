@@ -37,7 +37,7 @@ module.exports = async (client) => {
             recentlyChatted.add(message.author.id);
             setTimeout(() => {
                 recentlyChatted.delete(message.author.id);
-            }, 1000 * 30);
+            }, 1000 * 60);
         }
 
         // Adding experience to the user

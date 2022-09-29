@@ -12,7 +12,6 @@ class CommandHandler {
     _loadFrom(folder) {
         const commands = new Map();
         const aliases = new Map();
-
         const fs = require("fs");
 
         const files = fs.readdirSync(folder);
@@ -39,11 +38,8 @@ class CommandHandler {
     }
 
     getCommand(string) {
-
         if (!string) return null;
-
         let prefix = '';
-
         let prefixExists = false;
 
         for (const x of this.prefix) {

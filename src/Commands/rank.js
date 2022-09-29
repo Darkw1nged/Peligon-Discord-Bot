@@ -13,6 +13,10 @@ module.exports = class rank {
 
     async run(client, message, args, user) {
 
+        if (args.length > 1 && args[1].toLowerCase() === "log-channel") {
+            console.log("Complete command to change log channel ")
+        }
+
         // Setting up the attachment
         const canvas = Canvas.createCanvas(900, 220);
         const ctx = canvas.getContext('2d');

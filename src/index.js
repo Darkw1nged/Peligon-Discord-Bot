@@ -13,19 +13,19 @@ const { CommandHandler } = require('./Libraries/Packages/CommandHandler');
 const updateStatistics = require('./Mechanics/updateStatistics');
 const welcomeChannel = require('./Mechanics/welcomeChannel');
 
-const databaseConnection = mysql.createConnection({
+module.exports.databaseConnection = mysql.createPool({
+    connectionLimit: 100,
     host: config.mysql.host,
     user: config.mysql.user,
     password: config.mysql.password,
     database: config.mysql.database
 });
-module.exports.databaseConnection = databaseConnection;
 module.exports.client = client;
 
 client.on('ready', async () => {
     // Loading database anc reating any necessary tables if need be.
     const databaseCreation = require('./Libraries/Utils/databaseCreation')
-    await databaseCreation.initializeDatabase(client, databaseConnection);
+    await databaseCreation.initializeDatabase(client, this.databaseConnection);
 
     // Registering all events.
     let events = require('fs').readdirSync(__dirname + '/Events/');
@@ -38,9 +38,6 @@ client.on('ready', async () => {
     welcomeChannel(client);
 
     console.log(`Peligon Core has been enabled.`);
-
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`Startup uses approximately ${Math.round(used * 100) / 100} MB`);
 });
 
 // registering all commands.

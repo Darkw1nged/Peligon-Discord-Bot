@@ -38,6 +38,6 @@ module.exports = async (client) => {
         setTimeout(updateStats, 1000 * 60 * 2)
     }
 
-    updateStats();
+    // updateStats();
 
 }

@@ -14,7 +14,9 @@ module.exports = async (client) => {
         if (channel === undefined) return;
 
         if (channel.id === message.channel.id) {
-            if (message.content.length !== 5 || !randomWords.wordList.includes(message.content.toLowerCase())) {
+            const userGuess = message.content.toLowerCase();
+
+            if (userGuess.length !== 5 || !randomWords.wordList.includes(userGuess)) {
                 const errorEmbed = new MessageEmbed()
                     .setColor('#ED3419')
                     .setTitle('Invalid word!')
@@ -28,7 +30,7 @@ module.exports = async (client) => {
             const userTries = await wordleUtils.getTries(message.guild, message.author, message.channel);
 
             const word = await wordleUtils.getWord(message.guild, message.author, message.channel);
-            if (message.content === word) {
+            if (userGuess === word) {
                 hasFinished.add(message.author.id);
                 await wordleUtils.endGane(message.guild, message.author, false);
                 setTimeout(() => {
@@ -39,10 +41,10 @@ module.exports = async (client) => {
 
             let foundChars = [];
             let pattern = "";
-            for (let i=0; i<message.content.length; i++) {
-                if (message.content[i] === word[i]) {
+            for (let i=0; i<userGuess.length; i++) {
+                if (userGuess[i] === word[i]) {
                     pattern += '🟩 ';
-                } else if (word.includes(message.content[i]) && !foundChars.includes(message.content[i])) {
+                } else if (word.includes(userGuess[i]) && !foundChars.includes(userGuess[i])) {
                     pattern += '🟨 ';
                 } else {
                     pattern += '⬛ ';
@@ -69,7 +71,7 @@ module.exports = async (client) => {
             if (hasFinished.has(message.author.id)) {
                  const gameEnding = new MessageEmbed()
                     .setColor('#ED3419')
-                    .setTitle("Wordle - Game Finsihed!")
+                    .setTitle("Wordle - Game Finished!")
                     .setDescription(``)
                     .addFields(
                         {

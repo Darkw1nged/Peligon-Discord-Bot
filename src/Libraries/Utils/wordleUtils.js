@@ -1,5 +1,7 @@
 const index = require('../../index');
 const leaderboardUtils = require('../Utils/leaderboardUtils');
+const experienceUtils = require('../Utils/ExperienceUtils');
+const economyUtils = require('../Utils/EconomyUtils');
 
 module.exports.inGame = function (guild, user) {
     return new Promise((resolve) => {
