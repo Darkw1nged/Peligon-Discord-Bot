@@ -1,7 +1,7 @@
 const {Permissions, MessageEmbed} = require('discord.js');
 const DiscordPages = require('../Libraries/Packages/DiscordEmbedPages');
-const databaseUtils = require("../Libraries/Utils/databaseUtils");
-const channelUtils = require("../Libraries/Utils/channelUtls");
+const databaseUtils = require("../Libraries/Utils/UDatabase");
+const channelUtils = require("../Libraries/Utils/UChannel");
 
 module.exports = class helpMenu {
     constructor() {

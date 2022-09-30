@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
-const wordleUtils = require('../Libraries/Utils/wordleUtils');
+const wordleUtils = require('../Libraries/Utils/UWordle');
 const randomWords = require('../Libraries/Packages/RandomWords');
-const leaderboardUtils = require('../Libraries/Utils/leaderboardUtils');
+const leaderboardUtils = require('../Libraries/Utils/ULeaderboard');
 const hasFinished = new Set();
 
 module.exports = async (client) => {

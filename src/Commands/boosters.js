@@ -1,9 +1,9 @@
 // TODO booster types: Money, Exeprience
 const {MessageAttachment, Permissions, MessageEmbed} = require('discord.js');
 const Canvas = require('canvas');
-const economyUtils = require('../Libraries/Utils/EconomyUtils');
-const experineceUtils = require('../Libraries/Utils/ExperienceUtils');
-const canvasUtils = require('../Libraries/Utils/canvasUtils');
+const economyUtils = require('../Libraries/Utils/UEconomy');
+const experineceUtils = require('../Libraries/Utils/UExperience');
+const canvasUtils = require('../Libraries/Utils/UCanvas');
 
 module.exports = class BoostersMenu {
     constructor() {

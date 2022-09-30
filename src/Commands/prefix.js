@@ -1,8 +1,8 @@
 const { Permissions, MessageAttachment, MessageEmbed } = require('discord.js');
 const index = require("../index");
 const Canvas = require('canvas');
-const canvasUtils = require('../Libraries/Utils/canvasUtils');
-const databaseUtils = require('../Libraries/Utils/databaseUtils');
+const canvasUtils = require('../Libraries/Utils/UCanvas');
+const databaseUtils = require('../Libraries/Utils/UDatabase');
 
 module.exports = class prefix {
     constructor() {

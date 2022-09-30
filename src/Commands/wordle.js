@@ -1,6 +1,6 @@
-const wordleUtils = require('../Libraries/Utils/wordleUtils');
-const channelUtils = require('../Libraries/Utils/channelUtls');
-const leaderboardUtils = require('../Libraries/Utils/leaderboardUtils');
+const wordleUtils = require('../Libraries/Utils/UWordle');
+const channelUtils = require('../Libraries/Utils/UChannel');
+const leaderboardUtils = require('../Libraries/Utils/ULeaderboard');
 const { MessageEmbed } = require('discord.js');
 const randomWords = require('../Libraries/Packages/RandomWords');
 

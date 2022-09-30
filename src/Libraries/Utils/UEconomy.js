@@ -10,15 +10,11 @@ module.exports.getCoins = function (guild, user) {
 }
 
 module.exports.addCoins = async function (guild, user, coins) {
-    index.databaseConnection.query(`UPDATE users SET coins = ${await this.getCoins(guild, user) + coins} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
-        if (err) throw err;
-    });
+    index.databaseConnection.query(`UPDATE users SET coins = ${await this.getCoins(guild, user) + coins} WHERE guild_id=${guild.id} AND user_id=${user.id}`);
 }
 
 module.exports.removeCoins = async function (guild, user, coins) {
-    index.databaseConnection.query(`UPDATE users SET coins = ${await this.getCoins(guild, user) - coins} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
-        if (err) throw err;
-    });
+    index.databaseConnection.query(`UPDATE users SET coins = ${await this.getCoins(guild, user) - coins} WHERE guild_id=${guild.id} AND user_id=${user.id}`);
 }
 
 module.exports.getBankBalance = function (guild, user) {
@@ -58,13 +54,9 @@ module.exports.getCoinBooster = async function (guild, user) {
 }
 
 module.exports.addCoinBooster = async function (guild, user, amount) {
-    index.databaseConnection.query(`UPDATE users SET coin_boosters = ${await this.getCoinBooster(guild, user) + amount} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
-        if (err) throw err;
-    });
+    index.databaseConnection.query(`UPDATE users SET coin_boosters = ${await this.getCoinBooster(guild, user) + amount} WHERE guild_id=${guild.id} AND user_id=${user.id}`);
 }
 
 module.exports.removeCoinBooster = async function (guild, user, amount) {
-    index.databaseConnection.query(`UPDATE users SET coin_boosters = ${await this.getCoinBooster(guild, user) - amount} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
-        if (err) throw err;
-    });
+    index.databaseConnection.query(`UPDATE users SET coin_boosters = ${await this.getCoinBooster(guild, user) - amount} WHERE guild_id=${guild.id} AND user_id=${user.id}`);
 }

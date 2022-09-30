@@ -1,6 +1,6 @@
 const { MessageEmbed, Permissions } = require('discord.js');
-const databaseUtils = require('../Libraries/Utils/databaseUtils');
-const channelUtils = require('../Libraries/Utils/channelUtls');
+const databaseUtils = require('../Libraries/Utils/UDatabase');
+const channelUtils = require('../Libraries/Utils/UChannel');
 
 module.exports = class ban {
     constructor(){

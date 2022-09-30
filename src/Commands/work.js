@@ -1,6 +1,6 @@
-const leaderboardUtils = require('../Libraries/Utils/leaderboardUtils');
-const economyUtils = require('../Libraries/Utils/EconomyUtils');
-const channelUtils = require('../Libraries/Utils/channelUtls');
+const leaderboardUtils = require('../Libraries/Utils/ULeaderboard');
+const economyUtils = require('../Libraries/Utils/UEconomy');
+const channelUtils = require('../Libraries/Utils/UChannel');
 const recentlyWorked = new Set();
 const { MessageEmbed } = require('discord.js');
 

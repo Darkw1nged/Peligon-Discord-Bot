@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const Canvas = require('canvas');
-const economyUtils = require('../Libraries/Utils/EconomyUtils');
-const leaderboardUtils = require('./../Libraries/Utils/LeaderboardUtils');
-const canvasUtils = require('../Libraries/Utils/canvasUtils');
+const economyUtils = require('../Libraries/Utils/UEconomy');
+const leaderboardUtils = require('./../Libraries/Utils/ULeaderboard');
+const canvasUtils = require('../Libraries/Utils/UCanvas');
 
 module.exports = class balance {
     constructor() {

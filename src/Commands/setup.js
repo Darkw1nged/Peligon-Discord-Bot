@@ -1,6 +1,6 @@
 const { MessageEmbed, Permissions } = require('discord.js');
 const index = require('../index');
-const channelUtils = require('../Libraries/Utils/channelUtls');
+const channelUtils = require('../Libraries/Utils/UChannel');
 
 module.exports = class setup {
     constructor() {

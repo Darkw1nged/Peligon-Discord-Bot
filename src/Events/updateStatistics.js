@@ -1,4 +1,4 @@
-const channelUtils = require('../Libraries/Utils/channelUtls');
+const UStatistics = require('../Libraries/Utils/UStatistics');
 
 module.exports = async (client) => {
 
@@ -15,9 +15,9 @@ module.exports = async (client) => {
         return num;
     }
 
-    const ServerTotalChannel = client.channels.cache.get(await channelUtils.getServerTotalChannel);
-    const HumansChannel = client.channels.cache.get(await channelUtils.getHumansChannel);
-    const BotsChannel = client.channels.cache.get(await channelUtils.getBotsChannel);
+    const ServerTotalChannel = client.channels.cache.get(await UStatistics.getServerTotalChannel);
+    const HumansChannel = client.channels.cache.get(await UStatistics.getHumansChannel);
+    const BotsChannel = client.channels.cache.get(await UStatistics.getBotsChannel);
 
     client.on('guildMemberRemove', async member => {
         ServerTotalChannel.setName(`Server Total: ${guild.memberCount.toLocaleString()}`, "Updating statistics");

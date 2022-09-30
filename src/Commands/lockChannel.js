@@ -1,4 +1,4 @@
-const { MessageEmbed, Permissions} = require("../../node_modules/discord.js/src/index");
+const { MessageEmbed, Permissions} = require("discord.js");
 const locked = []
 
 module.exports = class lock {

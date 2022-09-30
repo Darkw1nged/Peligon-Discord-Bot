@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const Canvas = require('canvas');
-const experienceUtils = require('../Libraries/Utils/ExperienceUtils');
-const leaderboardUtils = require('../Libraries/Utils/LeaderboardUtils');
-const canvasUtils = require('../Libraries/Utils/canvasUtils');
+const experienceUtils = require('../Libraries/Utils/UExperience');
+const leaderboardUtils = require('../Libraries/Utils/ULeaderboard');
+const canvasUtils = require('../Libraries/Utils/UCanvas');
 
 module.exports = class rank {
     constructor() {

@@ -1,9 +1,9 @@
 const { MessageEmbed, Permissions } = require('discord.js');
 const moment = require('moment');
-const databaseUtils = require('../Libraries/Utils/databaseUtils');
-const experienceUtils = require('../Libraries/Utils/ExperienceUtils');
-const economyUtils = require('../Libraries/Utils/EconomyUtils');
-const wordleUtils = require('../Libraries/Utils/wordleUtils');
+const databaseUtils = require('../Libraries/Utils/UDatabase');
+const experienceUtils = require('../Libraries/Utils/UExperience');
+const economyUtils = require('../Libraries/Utils/UEconomy');
+const wordleUtils = require('../Libraries/Utils/UWordle');
 
 module.exports = class whoIs {
     constructor() {

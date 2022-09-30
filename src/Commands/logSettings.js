@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const channelUtils = require('../Libraries/Utils/channelUtls');
+const channelUtils = require('../Libraries/Utils/UChannel');
 
 module.exports = class Log {
     constructor() {

@@ -1,9 +1,9 @@
-const databaseUtils = require('../Libraries/Utils/databaseUtils');
-const leaderboardUtils = require('../Libraries/Utils/leaderboardUtils');
-const economyUtils = require('../Libraries/Utils/EconomyUtils');
-const experienceUtils = require('../Libraries/Utils/ExperienceUtils');
-const channelUtils = require('../Libraries/Utils/channelUtls');
-const wordleUtils = require('../Libraries/Utils/wordleUtils');
+const databaseUtils = require('../Libraries/Utils/UDatabase');
+const leaderboardUtils = require('../Libraries/Utils/ULeaderboard');
+const economyUtils = require('../Libraries/Utils/UEconomy');
+const experienceUtils = require('../Libraries/Utils/UExperience');
+const channelUtils = require('../Libraries/Utils/UChannel');
+const wordleUtils = require('../Libraries/Utils/UWordle');
 const index = require('../index');
 const recentlyChatted = new Set();
 const { MessageEmbed } = require('discord.js');
