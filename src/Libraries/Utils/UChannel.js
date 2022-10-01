@@ -22,15 +22,15 @@ module.exports.setLogsChannel = function (guild, channel) {
     index.databaseConnection.query(`UPDATE channels SET log='${channel.id}' WHERE guild_id=${guild.id}`);
 }
 
-module.exports.getWordleCategory = function (guild) {
+module.exports.getGamesCategory = function (guild) {
     return new Promise((resolve) => {
-        index.databaseConnection.query(`SELECT category_wordle FROM channels WHERE guild_id = ${guild.id}`, (err, result) => {
+        index.databaseConnection.query(`SELECT category_games FROM channels WHERE guild_id = ${guild.id}`, (err, result) => {
             if (err) throw err;
-            resolve(result[0]?.category_wordle);
+            resolve(result[0]?.category_games);
         });
     });
 }
 
-module.exports.setWordleCategory = function (guild, id) {
-    index.databaseConnection.query(`UPDATE channels SET category_wordle='${id}' WHERE guild_id=${guild.id}`);
+module.exports.setGamesCategory = function (guild, id) {
+    index.databaseConnection.query(`UPDATE channels SET category_games='${id}' WHERE guild_id=${guild.id}`);
 }

@@ -4,6 +4,7 @@ const economyUtils = require('../Libraries/Utils/UEconomy');
 const experienceUtils = require('../Libraries/Utils/UExperience');
 const channelUtils = require('../Libraries/Utils/UChannel');
 const wordleUtils = require('../Libraries/Utils/UWordle');
+const wordSearchUtils = require('../Libraries/Utils/UWordSeach');
 const index = require('../index');
 const recentlyChatted = new Set();
 const { MessageEmbed } = require('discord.js');
@@ -24,14 +25,20 @@ module.exports = async (client) => {
 
                 index.databaseConnection.query(`INSERT INTO wordle_profile (guild_id, user_id)
                 VALUES ('${message.guild.id}', '${message.author.id}')`);
+
+                index.databaseConnection.query(`INSERT INTO word_search_profile (guild_id, user_id)
+                VALUES ('${message.guild.id}', '${message.author.id}')`);
                 console.log(`Could not find user > ${message.author.username} inside of database; Inserting them now!`)
             }
         })
         if (message.content.startsWith(await databaseUtils.getServerPrefix(message.guild))) return;
         if (recentlyChatted.has(message.author.id)) return;
 
-        const channel = message.guild.channels.cache.get(await wordleUtils.getChannel(message.guild, message.author));
-        if (channel !== undefined && message.channel.id == channel.id) return;
+        const wordleChannel = message.guild.channels.cache.get(await wordleUtils.getChannel(message.guild, message.author));
+        if (wordleChannel !== undefined && message.channel.id == wordleChannel.id) return;
+
+        const worsSearchChannel = message.guild.channels.cache.get(await wordSearchUtils.getChannel(message.guild, message.author));
+        if (worsSearchChannel !== undefined && message.channel.id == worsSearchChannel.id) return;
 
         if (!recentlyChatted.has(message.author.id)) {
             recentlyChatted.add(message.author.id);

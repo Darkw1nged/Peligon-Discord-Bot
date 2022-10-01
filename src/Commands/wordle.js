@@ -12,7 +12,7 @@ module.exports = class Wordle {
     }
 
     async run(client, message, args, user) {
-        if (await channelUtils.getWordleCategory(message.guild) === undefined) {
+        if (await channelUtils.getGamesCategory(message.guild) === undefined) {
             const errorEmbed = new MessageEmbed()
                 .setColor('#ED3419')
                 .setTitle('Operation incomplete!')
@@ -25,14 +25,14 @@ module.exports = class Wordle {
         if (await wordleUtils.inGame(message.guild, message.author)) {
             const errorEmbed = new MessageEmbed()
                 .setColor('#ED3419')
-                .setDescription('You have already started a game or wordle.\nPlease finish your current game.')
+                .setDescription('You have already started a game of wordle.\nPlease finish your current game.')
 
             message.channel.send({ embeds: [errorEmbed] });
             return;
         }
         console.log(`${message.author.tag} is trying to play wordle.\nSetting up a new wordle game.`);
 
-        let category = client.channels.cache.get(await channelUtils.getWordleCategory(message.guild));
+        let category = client.channels.cache.get(await channelUtils.getGamesCategory(message.guild));
         await message.guild.channels.create(` ${message.author.username} Wordle`, { type: 'GUILD_TEXT', parent: category, permissionOverwrites: [
             {
                 id: message.guild.id,
@@ -45,7 +45,7 @@ module.exports = class Wordle {
         ]}).then(async (channel) => {
             const word = randomWords();
             await wordleUtils.startGame(message.guild, message.author, channel, word);
-            console.log(`Wordle Word -> Game ${message.author.username}'s word is ${word}`)
+            console.log(`Wordle Game -> Game ${message.author.username}'s word is ${word}`)
 
             const gameInformation = new MessageEmbed()
                 .setColor('#FFA500')

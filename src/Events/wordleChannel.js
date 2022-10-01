@@ -15,6 +15,7 @@ module.exports = async (client) => {
 
         if (channel.id === message.channel.id) {
             const userGuess = message.content.toLowerCase();
+            if (userGuess.startsWith("-")) return;
 
             if (userGuess.length !== 5 || !randomWords.wordList.includes(userGuess)) {
                 const errorEmbed = new MessageEmbed()

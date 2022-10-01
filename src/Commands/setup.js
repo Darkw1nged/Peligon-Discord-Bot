@@ -16,7 +16,7 @@ module.exports = class setup {
             const errorEmbed = new MessageEmbed()
                 .setColor('#ED3419')
                 .setTitle('Invalid arguments!')
-                .setDescription('Please re-write the command with an argument that is showing below; ```statistics | wordle```')
+                .setDescription('Please re-write the command with an argument that is showing below; ```statistics | games```')
 
             message.channel.send({ embeds: [errorEmbed] })
             return;
@@ -140,19 +140,19 @@ module.exports = class setup {
                 .setColor('#A3DE34')
                 .setDescription('Statistics channels has been set up.')
             message.channel.send({ embeds: [successEmbed] })
-        } else if (args[1].toLowerCase() === "wordle") {
-            await message.guild.channels.create('🏓  Wordle  🏓', { type: 'GUILD_CATEGORY', permissionOverwrites: [
+        } else if (args[1].toLowerCase() === "games") {
+            await message.guild.channels.create('🏓  Games  🏓', { type: 'GUILD_CATEGORY', permissionOverwrites: [
                 {
                     id: message.guild.id,
                     deny: ['VIEW_CHANNEL'],
                 }
             ]}).then(async (category) => {
-                await channelUtils.setWordleCategory(message.guild, category.id);
+                await channelUtils.setGamesCategory(message.guild, category.id);
             });
             
             const successEmbed = new MessageEmbed()
                 .setColor('#A3DE34')
-                .setDescription('Wordle has been set up.')
+                .setDescription('A Games category has been set up.')
             message.channel.send({ embeds: [successEmbed] })
         }
     }

@@ -114,3 +114,44 @@ module.exports.updateWordleBestStreak = function (guild, user, newStreak) {
         return;
     });
 }
+
+module.exports.getWordSearchCurrentStreak = function (guild, user) {
+    return new Promise((resolve) => {
+        index.databaseConnection.query(`SELECT word_search FROM leaderboard WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
+            if (err) throw err;
+            resolve(result[0]?.wordle);
+        });
+    });
+}
+
+module.exports.updateWordSearchCurrentStreak = function (guild, user, bestStreak) {
+    index.databaseConnection.query(`SELECT word_search_best_streak FROM word_search_profile WHERE guild_id=${guild.id} AND user_id=${user.id} ORDER BY word_search_best_streak DESC`, (err, result) => {
+        if (err) throw err;
+        let pos = 1;
+        for (let i = 0; i < result.length; i++) {
+            if (result[i].word_search_best_streak === bestStreak) {
+                index.databaseConnection.query(`UPDATE leaderboard SET word_search = ${pos} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
+                    if (err) throw err;
+                    return;
+                });
+            }
+            pos++;
+        }
+    });
+}
+
+module.exports.getWordSearchBestStreak = function (guild, user) {
+    return new Promise((resolve) => {
+        index.databaseConnection.query(`SELECT word_search_best FROM leaderboard WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
+            if (err) throw err;
+            resolve(result[0]?.word_search_best);
+        });
+    });
+}
+
+module.exports.updateWordSearchBestStreak = function (guild, user, newStreak) {
+    index.databaseConnection.query(`UPDATE leaderboard SET word_search_best=${newStreak} WHERE guild_id=${guild.id} AND user_id=${user.id}`, (err, result) => {
+        if (err) throw err;
+        return;
+    });
+}

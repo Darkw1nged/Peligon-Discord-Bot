@@ -90,6 +90,9 @@ module.exports.endGane = async function (guild, user, failed) {
     } else {
         index.databaseConnection.query(`UPDATE wordle_profile SET wordle_current_streak=${await this.getWinStreak(guild, user)} + 1 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
         index.databaseConnection.query(`UPDATE wordle_profile SET words_guessed=${await this.getGuessed(guild, user)} + 1 WHERE guild_id=${guild.id} AND user_id=${user.id}`);
+
+        await experienceUtils.addExperience(guild, user, Math.floor(Math.random() * 100) + 15);
+        await economyUtils.addCoins(guild, user, Math.floor(Math.random() * 30) + 15);
     }
 
     if (await this.getWinStreak(guild, user) > await this.getBestWinStreak(guild, user)) {
@@ -97,7 +100,4 @@ module.exports.endGane = async function (guild, user, failed) {
     }
     await leaderboardUtils.updateWordleCurrentStreak(guild, user, await this.getBestWinStreak(guild, user));
     index.databaseConnection.query(`DELETE FROM wordle WHERE guild_id=${guild.id} AND user_id=${user.id}`);
-    
-    await experienceUtils.addExperience(guild, user, Math.floor(Math.random() * 100) + 15);
-    await economyUtils.addCoins(guild, user, Math.floor(Math.random() * 30) + 15);
 }
