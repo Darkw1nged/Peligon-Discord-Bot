@@ -2,9 +2,9 @@ const { MessageEmbed } = require('discord.js');
 const wordleUtils = require('../Libraries/Utils/UWordle');
 const wordSearchUtils = require('../Libraries/Utils/UWordSeach');
 
-module.exports = class Forfit {
+module.exports = class Forfeit  {
     constructor() {
-        this.name = 'forfit'
+        this.name = 'forfeit'
         this.alias = ['ff']
         this.usage = ``
     }

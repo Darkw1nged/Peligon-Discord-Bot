@@ -1,10 +1,10 @@
 {
-  "secret"   : "OTA4NDI3MDI0ODQ1MTMxODQ3.YY1kmA.zKkwIacoYpcHXV57UCwuPJ93K1o",
+  "secret"   : "OTA4NDI3MDI0ODQ1MTMxODQ3.GOF3De.RZKfsT3UqgKqBgkPeUgM2OFcSHVgcB0BVhxVvQ",
   "secret-2" : "AIzaSyCoWuMJgEFZytHsSZ3dYh6_GVO599YiAUw",
   "mysql"    : {
     "host"     : "localhost",
     "user"     : "root",
-    "password" : "",
+    "password" : "99Bootboy!",
     "database" : "discord"
   }
 }
